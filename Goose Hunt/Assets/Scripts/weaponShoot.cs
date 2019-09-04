@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class weaponShoot : MonoBehaviour
 {
 	public Camera GunCamera;
 	private GameObject prefab;
-	private bool trigger = false;
 
 	void Start()
 	{

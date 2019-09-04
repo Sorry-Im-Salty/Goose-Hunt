@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
 	private float timer = 0.0f;
 	private Rigidbody rb;
-    // Start is called before the first frame update
+
     void Start()
     {
 		rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 		timer += Time.deltaTime;

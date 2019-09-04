@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class objectPool : MonoBehaviour
@@ -24,12 +23,6 @@ public class objectPool : MonoBehaviour
 			obj.SetActive(false);
 			pooledObjects.Add(obj);
 		}
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 	public GameObject GetPooledObject()
