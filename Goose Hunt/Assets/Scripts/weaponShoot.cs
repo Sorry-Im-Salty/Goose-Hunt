@@ -5,15 +5,14 @@ using UnityEngine;
 public class weaponShoot : MonoBehaviour
 {
 	public Camera GunCamera;
-	public float range = 100.0f;
-	public ParticleSystem muzzleFlash;
+	private GameObject prefab;
+	private bool trigger = false;
 
-
-	private void Awake()
+	void Start()
 	{
-		muzzleFlash.Stop();
+		prefab = Resources.Load("Projectile") as GameObject;
 	}
-	// Update is called once per frame
+
 	void Update()
     {
 		if (Input.GetButtonDown("Fire1"))
@@ -24,11 +23,13 @@ public class weaponShoot : MonoBehaviour
 
 	void Shoot()
 	{
-		muzzleFlash.Play();
-		RaycastHit hit;
-		if (Physics.Raycast(GunCamera.transform.position, GunCamera.transform.forward, out hit, range))
+		GameObject Projectile = objectPool.sharedInstance.GetPooledObject();
+		if (Projectile != null)
 		{
-			Debug.Log(hit.transform.name);
+			Projectile.transform.position = transform.position + GunCamera.transform.forward * 2;
+			Rigidbody rb = Projectile.GetComponent<Rigidbody>();
+			rb.velocity = GunCamera.transform.forward * 40;
+			Projectile.SetActive(true);
 		}
 	}
 }
