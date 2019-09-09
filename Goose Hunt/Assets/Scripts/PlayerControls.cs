@@ -29,14 +29,18 @@ public class PlayerControls : MonoBehaviour
 	// Constructor.
 	void Awake()
     {
-		// Lock the mouse to the centre of the screen. (Also hides the cursor)
-		Cursor.lockState = CursorLockMode.Locked;
-
+#if (UNITY_ANDROID) // VR controls.
 		if (OVRInput.GetDominantHand() == OVRInput.Handedness.LeftHanded)
 			m_VRController = OVRInput.Controller.LTouch;
 
 		else
 			m_VRController = OVRInput.Controller.RTouch;
+
+#elif (UNITY_STANDALONE_WIN) // PC controls.
+		// Lock the mouse to the centre of the screen. (Also hides the cursor)
+		Cursor.lockState = CursorLockMode.Locked;
+
+#endif
     }
 
     // Update the player.
