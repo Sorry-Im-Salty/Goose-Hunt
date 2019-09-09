@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿/*-------------------------------------------------------------------*
+|  PROJECTILE
+|
+|  Author:			Thomas Maltezos
+| 
+|  Description:		Manages the projectiles fired from the weapon.
+*-------------------------------------------------------------------*/
+
+using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
@@ -10,6 +18,7 @@ public class projectile : MonoBehaviour
 		rb = gameObject.GetComponent<Rigidbody>();
     }
 
+	// Projectiles will exist for 5 seconds, then be disabled and their velocity will be reset.
     void Update()
     {
 		timer += Time.deltaTime;
