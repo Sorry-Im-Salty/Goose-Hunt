@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
 	// Loads the next Scene after the Menu Scene within the Build Settings.
 	public void PlayGame()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		SceneManager.LoadScene(1);
 	}
 
 	// Debug is for confirmation within unity.
