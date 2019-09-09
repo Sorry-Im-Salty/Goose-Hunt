@@ -1,4 +1,16 @@
-﻿using System.Collections.Generic;
+﻿/*-------------------------------------------------------------------*
+|  OBJECT_POOL
+|
+|  Author:			Thomas Maltezos
+| 
+|  Description:		Pool that stores gameObjects that are 'deleted'
+|					often or to only allow a certain amount of
+|					objects.
+|
+|  Example:			Used to store the weapon projectiles.
+*-------------------------------------------------------------------*/
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class objectPool : MonoBehaviour
@@ -9,11 +21,13 @@ public class objectPool : MonoBehaviour
 	public int amountToPool;
 
 
+	// Creates a shared Instance of the class.
 	void Awake()
 	{
 		sharedInstance = this;
 	}
 
+	// Creates a list of objects with the size depending on the amountToPool input.
     void Start()
     {
 		pooledObjects = new List<GameObject>();
@@ -25,6 +39,7 @@ public class objectPool : MonoBehaviour
 		}
     }
 
+	// Returns the pooledObject number.
 	public GameObject GetPooledObject()
 	{
 		for (int i = 0; i < pooledObjects.Count; i++)
