@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1641995145995049344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717648171493001185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00cd4e452ca4d3408752c12fe77ac5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GunCamera: {fileID: 6307431038460507234}
+  Gun: {fileID: 1717648171493001185}
+--- !u!114 &1937603446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717648171493001185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e9ab27c95721d4181c1b6dec449030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 5729428397272129332, guid: 05646de319d61bc4aa234a5cf84a6e69,
+    type: 3}
+  amountToPool: 5
 --- !u!1001 &6307431038459650362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,3 +87,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+--- !u!20 &6307431038460507234 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6307431038459650362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1717648171493001185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4638198495773828827, guid: 126d619cf4daa52469682f85c1378b4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6307431038459650362}
+  m_PrefabAsset: {fileID: 0}

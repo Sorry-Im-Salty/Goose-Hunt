@@ -33,6 +33,7 @@ public class Goose : MonoBehaviour
 		{
 			gameObject.SetActive(false);
 			m_rb.useGravity = false;
+			gameObject.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
 			gameObject.transform.position = GetComponentInParent<Transform>().position;
 			m_rb.velocity = new Vector3(Random.Range(m_xVelocityMin, m_xVelocityMax), m_yVelocity, 0.0f);
 			m_timer = 0.0f;

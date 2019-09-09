@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Player Controls.
 // Created by Grant Roberts.
@@ -8,6 +9,15 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+	private enum GameState
+	{
+		Menu,
+		Game
+	}
+
+	// The current game state.
+	private GameState m_CurrentGameState = GameState.Menu;
+
 	// Mouse sensitivity on the x axis.
 	public float m_MouseSensitivityX = 0.0f;
 
@@ -31,31 +41,42 @@ public class PlayerControls : MonoBehaviour
 	// Constructor.
 	void Awake()
     {
+		try
+		{
 #if (UNITY_ANDROID) // VR controls.
-		if (OVRInput.GetDominantHand() == OVRInput.Handedness.LeftHanded)
-			m_VRController = OVRInput.Controller.LTouch;
+			if (OVRInput.GetDominantHand() == OVRInput.Handedness.LeftHanded)
+				m_VRController = OVRInput.Controller.LTouch;
 
-		else
-			m_VRController = OVRInput.Controller.RTouch;
+			else
+				m_VRController = OVRInput.Controller.RTouch;
 
 #elif (UNITY_STANDALONE_WIN) // PC controls.
 		// Lock the mouse to the centre of the screen. (Also hides the cursor)
 		Cursor.lockState = CursorLockMode.Locked;
 
 #endif
+		}
+		catch
+		{
+
+		}
     }
 
-    // Update the player.
-    void Update()
-    {
-#if (UNITY_ANDROID) // VR controls.
-	if (OVRInput.GetControllerPositionTracked(m_VRController))
+	// Update the player.
+	void Update()
 	{
-		m_Gun.transform.localRotation = OVRInput.GetLocalControllerRotation(m_VRController);
-		m_Gun.transform.localPosition = OVRInput.GetLocalControllerPosition(m_VRController);
-	}
-
-#elif (UNITY_STANDALONE_WIN) // PC controls.
+		try
+		{
+#if (UNITY_ANDROID) // VR controls.
+			if (OVRInput.GetControllerPositionTracked(m_VRController))
+			{
+				m_Gun.transform.localRotation = OVRInput.GetLocalControllerRotation(m_VRController);
+				m_Gun.transform.localPosition = OVRInput.GetLocalControllerPosition(m_VRController);
+			}
+#endif
+			else if (m_CurrentGameState == GameState.Game)
+			{
+#if (UNITY_STANDALONE_WIN) // PC controls.
 		// Get the x and y movement of the mouse.
 		x += m_MouseSensitivityX * Input.GetAxis("Mouse X");
 		y -= m_MouseSensitivityY * Input.GetAxis("Mouse Y");
@@ -63,5 +84,11 @@ public class PlayerControls : MonoBehaviour
 		// Rotate the player by that much.
 		transform.eulerAngles = new Vector3(y, x, 0.0f);
 #endif
+			}
+		}
+		catch
+		{
+
+		}
 	}
 }

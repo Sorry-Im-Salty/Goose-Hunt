@@ -13,7 +13,6 @@ using UnityEngine;
 
 public class weaponShoot : MonoBehaviour
 {
-	public Camera GunCamera;
 	public GameObject Gun;
 	private GameObject prefab;
 
@@ -38,17 +37,9 @@ public class weaponShoot : MonoBehaviour
 		GameObject Projectile = objectPool.sharedInstance.GetPooledObject();
 		if (Projectile != null)
 		{
-			Projectile.transform.position = transform.position + GunCamera.transform.forward * 2;
+			Projectile.transform.position = transform.position + Gun.transform.forward * 2;
 			Rigidbody rb = Projectile.GetComponent<Rigidbody>();
-			if (Application.platform == RuntimePlatform.Android)
-			{
-				rb.velocity = Gun.transform.forward * 40;
-			}
-			else
-			{
-				rb.velocity = GunCamera.transform.forward * 40;
-			}
-			
+			rb.velocity = Gun.transform.forward * 40;
 			Projectile.SetActive(true);
 		}
 	}
