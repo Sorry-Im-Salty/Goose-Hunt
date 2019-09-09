@@ -60,6 +60,7 @@ public class Goose : MonoBehaviour
 		if (collision.gameObject.tag == "Bullet")
 		{
 			m_rb.useGravity = true;
+			Score.scoreNum++;
 		}
 	}
 }
