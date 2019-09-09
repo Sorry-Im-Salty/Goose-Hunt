@@ -32,6 +32,7 @@ public class Goose : MonoBehaviour
 		if (m_timer >= 5.0f)
 		{
 			gameObject.SetActive(false);
+			m_rb.useGravity = false;
 			gameObject.transform.position = GetComponentInParent<Transform>().position;
 			m_rb.velocity = new Vector3(Random.Range(m_xVelocityMin, m_xVelocityMax), m_yVelocity, 0.0f);
 			m_timer = 0.0f;
