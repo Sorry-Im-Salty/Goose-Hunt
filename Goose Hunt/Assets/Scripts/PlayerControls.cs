@@ -23,8 +23,10 @@ public class PlayerControls : MonoBehaviour
 	// Y rotation of the mouse.
 	private float y = 0.0f;
 
+#if (UNITY_ANDROID) // VR controls.
 	// The VR controller.
 	private OVRInput.Controller m_VRController = OVRInput.Controller.None;
+#endif
 
 	// Constructor.
 	void Awake()
