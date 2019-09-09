@@ -14,6 +14,7 @@ using UnityEngine;
 public class weaponShoot : MonoBehaviour
 {
 	public Camera GunCamera;
+	public GameObject Gun;
 	private GameObject prefab;
 
 	// Loads the projectiles.
@@ -39,7 +40,15 @@ public class weaponShoot : MonoBehaviour
 		{
 			Projectile.transform.position = transform.position + GunCamera.transform.forward * 2;
 			Rigidbody rb = Projectile.GetComponent<Rigidbody>();
-			rb.velocity = GunCamera.transform.forward * 40;
+			if (Application.platform == RuntimePlatform.Android)
+			{
+				rb.velocity = Gun.transform.forward * 40;
+			}
+			else
+			{
+				rb.velocity = GunCamera.transform.forward * 40;
+			}
+			
 			Projectile.SetActive(true);
 		}
 	}
