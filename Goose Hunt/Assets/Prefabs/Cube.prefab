@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_secondsActive: 0
-  m_xVelocityMin: 0
+  m_xVelocityMin: -16
   m_xVelocityMax: 16
   m_yVelocity: 4
 --- !u!54 &1753168305037636152
