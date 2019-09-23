@@ -41,25 +41,36 @@ public class PlayerControls : MonoBehaviour
 	// Constructor.
 	void Awake()
     {
-
 #if (UNITY_ANDROID) // VR controls.
 		if (OVRInput.GetDominantHand() == OVRInput.Handedness.LeftHanded)
 			m_VRController = OVRInput.Controller.LTouch;
 		
 		else
 			m_VRController = OVRInput.Controller.RTouch;
+
 #elif (UNITY_STANDALONE_WIN)
 		if (m_CurrentGameState == GameState.Game)
 			Cursor.lockState = CursorLockMode.Locked;
 #endif
-
 	}
 
 	// Update the player.
 	void Update()
 	{
-		if (m_CurrentGameState == GameState.Game && Cursor.lockState != CursorLockMode.Locked)
+		if (m_CurrentGameState == GameState.Menu && Cursor.lockState != CursorLockMode.None)
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+
+		else if (m_CurrentGameState == GameState.Game && Cursor.lockState != CursorLockMode.Locked)
+		{
 			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
+
+		Debug.Log(Cursor.lockState);
+
 		try
 		{
 #if (UNITY_ANDROID) // VR controls.
@@ -68,6 +79,7 @@ public class PlayerControls : MonoBehaviour
 				m_Gun.transform.localRotation = OVRInput.GetLocalControllerRotation(m_VRController);
 				m_Gun.transform.localPosition = OVRInput.GetLocalControllerPosition(m_VRController);
 			}
+
 #elif (UNITY_STANDALONE_WIN) // PC controls.
 			if (m_CurrentGameState == GameState.Game)
 			{
