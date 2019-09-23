@@ -48,6 +48,9 @@ public class PlayerControls : MonoBehaviour
 		
 		else
 			m_VRController = OVRInput.Controller.RTouch;
+#elif (UNITY_STANDALONE_WIN)
+		if (m_CurrentGameState == GameState.Game)
+			Cursor.lockState = CursorLockMode.Locked;
 #endif
 
 	}
