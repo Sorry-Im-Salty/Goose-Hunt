@@ -3,34 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Player Controls.
-// Created by Grant Roberts.
-// Description: the controls for the player.
+/**
+* Player Controls.
+* 
+* Created by Grant Roberts.
+* 
+* Description: the controls for the player.
+*/
 
 public class PlayerControls : MonoBehaviour
 {
+	/**
+	 * The game state of the player.
+	 */
 	public enum GameState
 	{
 		Menu,
 		Game
 	}
 
-	// The current game state.
+	/**
+	* The current game state.
+	*/
 	public GameState m_CurrentGameState = GameState.Menu;
 
-	// Mouse sensitivity on the x axis.
+	/**
+	* Mouse sensitivity on the x axis.
+	*/
 	public float m_MouseSensitivityX = 0.0f;
 
-	// Mouse sensitivity on the y axis.
+	/**
+	* Mouse sensitivity on the y axis.
+	*/
 	public float m_MouseSensitivityY = 0.0f;
 
-	// The gun.
+	/**
+	* The player's gun.
+	*/
 	public GameObject m_Gun = null;
 
-	// X rotation of the mouse.
+	/**
+	* X rotation of the mouse.
+	*/
 	private float x = 0.0f;
 
-	// Y rotation of the mouse.
+	/**
+	* Y rotation of the mouse.
+	*/
 	private float y = 0.0f;
 
 #if (UNITY_ANDROID) // VR controls.
@@ -38,7 +57,9 @@ public class PlayerControls : MonoBehaviour
 	private OVRInput.Controller m_VRController = OVRInput.Controller.None;
 #endif
 
-	// Constructor.
+	/**
+	 * Basically a constructor. 
+	 */
 	void Awake()
     {
 #if (UNITY_ANDROID) // VR controls.
@@ -54,7 +75,9 @@ public class PlayerControls : MonoBehaviour
 #endif
 	}
 
-	// Update the player.
+	/**
+	 * Update the player.
+	 */
 	void Update()
 	{
 		if (m_CurrentGameState == GameState.Menu && Cursor.lockState != CursorLockMode.None)
