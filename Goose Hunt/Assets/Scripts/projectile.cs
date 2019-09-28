@@ -1,24 +1,33 @@
-﻿/*-------------------------------------------------------------------*
-|  PROJECTILE
-|
-|  Author:			Thomas Maltezos
-| 
-|  Description:		Manages the projectiles fired from the weapon.
-*-------------------------------------------------------------------*/
+﻿using UnityEngine;
 
-using UnityEngine;
+/// <summary>
+/// Manages the projectile resets.
+/// </summary>
 
 public class projectile : MonoBehaviour
 {
+    /// <summary>
+    /// Timer will count up to 5.
+    /// </summary>
 	private float timer = 0.0f;
-	private Rigidbody rb;
 
+    /// <summary>
+    /// Stores the rigidbody.
+    /// </summary>
+    private Rigidbody rb;
+
+
+    /// <summary>
+    /// Gets the rigidbody component on start.
+    /// </summary>
     void Start()
     {
 		rb = gameObject.GetComponent<Rigidbody>();
     }
 
-	// Projectiles will exist for 5 seconds, then be disabled and their velocity will be reset.
+    /// <summary>
+    /// Timer will count up to 5 then reset projectile.
+    /// </summary>
     void Update()
     {
 		timer += Time.deltaTime;

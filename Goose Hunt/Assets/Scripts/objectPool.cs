@@ -1,33 +1,41 @@
-﻿/*-------------------------------------------------------------------*
-|  OBJECT_POOL
-|
-|  Author:			Thomas Maltezos
-| 
-|  Description:		Pool that stores gameObjects that are 'deleted'
-|					often or to only allow a certain amount of
-|					objects.
-|
-|  Example:			Used to store the weapon projectiles.
-*-------------------------------------------------------------------*/
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// Manages gameobjects which are 'deleted' often.
+/// </summary>
 
 public class objectPool : MonoBehaviour
 {
+    /// <summary>
+    /// A shared instance which can be accessed from other scripts.
+    /// </summary>
 	public static objectPool sharedInstance;
+    /// <summary>
+    /// A list of gameobjects.
+    /// </summary>
 	public List<GameObject> pooledObjects;
+    /// <summary>
+    /// Stores the object to be pooled.
+    /// </summary>
 	public GameObject objectToPool;
+    /// <summary>
+    /// Stores the amount that will be pooled.
+    /// </summary>
 	public int amountToPool;
 
 
-	// Creates a shared Instance of the class.
-	void Awake()
+    /// <summary>
+    /// Creates a shared Instance of the class.
+    /// </summary>
+    void Awake()
 	{
 		sharedInstance = this;
 	}
 
-	// Creates a list of objects with the size depending on the amountToPool input.
+    /// <summary>
+    /// Creates a list of objects with the size depending on the amountToPool input.
+    /// </summary>
     void Start()
     {
 		pooledObjects = new List<GameObject>();
@@ -39,8 +47,10 @@ public class objectPool : MonoBehaviour
 		}
     }
 
-	// Returns the pooledObject number.
-	public GameObject GetPooledObject()
+    /// <summary>
+    /// Returns the pooledObject number.
+    /// </summary>
+    public GameObject GetPooledObject()
 	{
 		for (int i = 0; i < pooledObjects.Count; i++)
 		{
