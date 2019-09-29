@@ -2,7 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//File Name: Goose
 //Created by Connor Li
+//Description: Controls the object flying objects.
+
+/**
+* File Name: Goose
+* 
+* Created by Connor Li.
+* 
+* Description: Controls the object flying objects.
+*/
 public class Goose : MonoBehaviour
 {
 	float m_timer;
@@ -15,7 +25,6 @@ public class Goose : MonoBehaviour
 	Collider m_Collider;
 	Rigidbody m_rb;
 
-    // Start is called before the first frame update
     void Awake()
     {
 		m_Spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<Transform>();
@@ -24,12 +33,15 @@ public class Goose : MonoBehaviour
 		m_rb.velocity = new Vector3(Random.Range(m_xVelocityMin, m_xVelocityMax), m_yVelocity, 0.0f);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 		m_timer += Time.deltaTime;
-		//Resets the goose
-		if (m_timer >= 5.0f)
+        //Resets the goose
+        /**
+         * Resets the goose
+        */
+        if (m_timer >= 5.0f)
 		{
 			gameObject.SetActive(false);
 			m_rb.useGravity = false;
@@ -42,23 +54,35 @@ public class Goose : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		//Checks if the collision is with another goose
-		if (collision.gameObject.tag == "Goose")
+        //Checks if the collision is with another goose
+        /**
+        * Checks if the collision is with another goose
+        */
+        if (collision.gameObject.tag == "Goose")
 		{
 			Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), m_Collider);
 		}
-		//Checks if the collision is with the ground
-		else if(collision.gameObject.tag == "Ground")
+        //Checks if the collision is with the ground
+        /**
+        * Checks if the collision is with the ground
+        */
+        else if (collision.gameObject.tag == "Ground")
 		{
 			Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), m_Collider);
 		}
-		//Checks if the collision is with the Spawner
-		else if (collision.gameObject.tag == "Spawner")
+        //Checks if the collision is with the Spawner
+        /**
+        * Checks if the collision is with the Spawner
+        */
+        else if (collision.gameObject.tag == "Spawner")
 		{
 			Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), m_Collider);
 		}
-		//Checks if the collision is with the bullet
-		if (collision.gameObject.tag == "Bullet")
+        //Checks if the collision is with the bullet
+        /**
+         * Checks if the collision is with the bullet
+         */
+        if (collision.gameObject.tag == "Bullet")
 		{
 			m_rb.useGravity = true;
 			Score.scoreNum++;
