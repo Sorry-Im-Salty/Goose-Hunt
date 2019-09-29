@@ -15,15 +15,34 @@ using UnityEngine;
 */
 public class Goose : MonoBehaviour
 {
-	float m_timer;
-	public float m_secondsActive;
+    /**
+    * Timer till object is despawned
+    */
+    float m_timer;
+    /**
+    * Minimum x velocity
+    */
 	public float m_xVelocityMin = 10.0f;
-	public float m_xVelocityMax = 20.0f;
-	public float m_yVelocity = 20.0f;
-	bool MouseOver = false;
-	Transform m_Spawner;
-	Collider m_Collider;
-	Rigidbody m_rb;
+    /**
+    * Maximum x velocity
+    */
+    public float m_xVelocityMax = 20.0f;
+    /**
+    * y velocity
+    */
+    public float m_yVelocity = 20.0f;
+    /**
+    * Gets the spawners transform
+    */
+    Transform m_Spawner;
+    /**
+    * Holds its collider
+    */
+    Collider m_Collider;
+    /**
+    * Holds its rigidbody
+    */
+    Rigidbody m_rb;
 
     void Awake()
     {
